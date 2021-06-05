@@ -113,13 +113,20 @@ class ViewController: UIViewController {
     @IBAction func tapAction(_ sender: Any) {
         //segueを利用して画面を遷移
         performSegue(withIdentifier: "result", sender: nil)
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //segueから遷移先のLargeimageViewControllerを取得する
         let largeimageViewController:LargeimageViewController = segue.destination as! LargeimageViewController
         //遷移先のLargeimageViewControllerで宣言しているsendImageにUIImageViewに表示された画像を代入して渡す
         largeimageViewController.sendImage = imageView.image!
-    }
+        
+        if self.timer != nil {
+            self.timer.invalidate()  //タイマーを停止する
+            // play() の self.timer == nil で判断するために、 self.timer = nil としておく
+            self.timer = nil
+        }
+        }
     
     //遷移先から戻ってくるときに呼ばれる
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
@@ -127,7 +134,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //imageViewに表示する画像を設定
         let image = UIImage(named: "boss")
         imageView.image = image
         // Do any additional setup after loading the view.
