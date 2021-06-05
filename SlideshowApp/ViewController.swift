@@ -125,6 +125,11 @@ class ViewController: UIViewController {
             self.timer.invalidate()  //タイマーを停止する
             // play() の self.timer == nil で判断するために、 self.timer = nil としておく
             self.timer = nil
+            //戻るボタンと進むボタンをタップ可能にする
+            backButton.isEnabled = true
+            nextButton.isEnabled = true
+            //再生停止ボタンの名前を再生に変える
+            startButton.setTitle("再生", for: .normal)
         }
         }
     
